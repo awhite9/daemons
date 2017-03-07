@@ -21,7 +21,7 @@ public class Daemon implements Runnable
         {
             running = true;
             routes.TableJoinController.getSuperJoin().fragment();
-
+            System.out.println(routes.TableJoinController.getSuperJoin().fragment());
             System.out.println("Test: "+runNumber++);
         }
     }

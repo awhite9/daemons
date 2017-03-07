@@ -36,16 +36,19 @@ public class TableJoinController extends Controller {
 
 
         @Transactional(readOnly = true)
-        public Result getGoogleChart() {
-            Query query = jpaApi.em().createNativeQuery("select p.patient_id, v.name, pv.value, pv.date_taken from patient p join patient_vital pv on p.PATIENT_ID = pv.PATIENT_ID join vitals v on pv.VITAL_ID = v.VITAL_ID where v.NAME = :weight", PatientVital.class );
-            query.setParameter("weight", "weight");
-            List<PatientVital> patientVitals = (List<PatientVital>) query.getResultList();
+        public Result getGoogleChart()
+        {
+            List<PatientVital> patientVitals = (List<PatientVital>) jpaApi.em().createNativeQuery(
+                    "select pv.PATIENT_VITAL_ID, v.name, pv.value, pv.date_taken from patient p \n" +
+                    "join patient_vital pv on p.PATIENT_ID = pv.PATIENT_ID \n" +
+                    "join vitals v on pv.VITAL_ID = v.VITAL_ID where v.NAME = \'weight\'", PatientVital.class).getResultList();
+
 
             for (PatientVital p:patientVitals)
             {
-                System.out.println("WEIGHT: " + p.value);
+                System.out.println("google charts pulling from DB");
             }
-            return ok(toJson(patientVitals));
+            return ok(views.html.googlecharts.render(patientVitals));
         }
 
 

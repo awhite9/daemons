@@ -30,8 +30,8 @@ public class DaemonController extends Controller
         if (!Daemon.getRunning())
         {
             Daemon daemon = new Daemon();
-            FiniteDuration delay = Duration.create(1, TimeUnit.SECONDS);
-            FiniteDuration repeat = Duration.create(1, TimeUnit.SECONDS);
+            FiniteDuration delay = Duration.create(10, TimeUnit.SECONDS);
+            FiniteDuration repeat = Duration.create(10, TimeUnit.SECONDS);
 
             Akka.system(application.get()).scheduler().
                     schedule(delay, repeat, daemon, Akka.system(application.get()).dispatcher());

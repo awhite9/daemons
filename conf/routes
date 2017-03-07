@@ -17,3 +17,6 @@ GET     /google                     controllers.TableJoinController.getGoogleCha
 
 # Daemon
 GET     /daemonStart                controllers.DaemonController.start()
+
+#Looping
+GET     /looping                    controllers.LoopingController.checkDB()
