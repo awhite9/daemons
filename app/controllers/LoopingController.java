@@ -1,6 +1,7 @@
 package controllers;
 
 
+import models.Prescription_Reminder;
 import models.SuperJoin;
 import play.data.FormFactory;
 import play.db.jpa.JPAApi;
@@ -9,6 +10,7 @@ import play.mvc.Controller;
 import play.mvc.Result;
 
 import javax.inject.Inject;
+import java.time.LocalTime;
 import java.util.List;
 
 public class LoopingController extends Controller {
@@ -22,36 +24,50 @@ public class LoopingController extends Controller {
         this.jpaApi = jpaApi;
     }
 
-    @Transactional(readOnly = true)
+    @Transactional
     public Result checkDB()
     {
-        int count = 0;
-        boolean going = true;
 
-        while (going)
-        {
-
-            List<SuperJoin> superJoin = (List<SuperJoin>) jpaApi.em().createNativeQuery("select p.PATIENT_ID, p.first_name, p.cell_phone, pr.start_time, f.frequency, pre.DOSAGE, m.NAME from patient p join prescription_reminder pr on p.PATIENT_ID = pr.PATIENT_ID join frequency f on pr.FREQUENCY_ID = f.FREQUENCY_ID join prescription pre on pr.PRESCRIPTION_ID = pre.PRESCRIPTION_ID join medication m on pre.MEDICATION_ID = m.MEDICATION_ID", SuperJoin.class).getResultList();
+        System.out.println("In the checkDB function");
+            List<SuperJoin> superJoin = (List<SuperJoin>) jpaApi.em().createNativeQuery("select pr.REMINDER_ID, p.PATIENT_ID, p.first_name, p.cell_phone, pr.NEXT_REMINDER, f.frequency, pre.DOSAGE, m.NAME from patient p join prescription_reminder pr on p.PATIENT_ID = pr.PATIENT_ID join frequency f on pr.FREQUENCY_ID = f.FREQUENCY_ID join prescription pre on pr.PRESCRIPTION_ID = pre.PRESCRIPTION_ID join medication m on pre.MEDICATION_ID = m.MEDICATION_ID", SuperJoin.class).getResultList();
 
             for(SuperJoin loop : superJoin)
             {
-                System.out.println(loop.getFirstName()+" "+count);
+                int r =LocalTime.now().compareTo(loop.nextReminder);
+                System.out.println("int R from comparison function: "+r);
+                if(r>0)
+                {
+                    System.out.println("Time has passed!! do something!!");
+                    System.out.println("current reminder time: "+loop.nextReminder);
+                    System.out.println("current time: "+LocalTime.now());
+                    LocalTime newNextReminder = LocalTime.now().plusSeconds(loop.frequency);
+                    System.out.println("New Reminder time: "+newNextReminder);
+
+
+                    Long reminderID = loop.reminderID;
+                    Prescription_Reminder prescriptionReminder = (Prescription_Reminder) jpaApi.em().createQuery("select pr from Prescription_Reminder pr where reminderID = :id").setParameter("id", reminderID).getSingleResult();
+                    prescriptionReminder.nextReminder = newNextReminder;
+                    jpaApi.em().persist(prescriptionReminder);
+
+
+
+                    System.out.println("next Scheduled time after db update: "+prescriptionReminder.nextReminder);
+
+                }
+                else
+                {
+                    System.out.println("not time yet...");
+                }
             }
-            count++;
-            try
-            {
-                Thread.sleep(10000);
-            }
-            catch (Exception e)
-            {
-                System.out.println("oh no");
-            }
-            if(count>200)
-            {
-                going = false;
-            }
-        }
-        return ok("Loop Started");
+
+
+
+        return redirect(routes.LoopingController.buttonPage());
+    }
+
+    public Result buttonPage()
+    {
+        return ok(views.html.button.render());
     }
 
 }

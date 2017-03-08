@@ -13,10 +13,12 @@ GET     /assets/*file               controllers.Assets.at(path="/public", file)
 # SuperJoin
 GET     /superJoin                  controllers.TableJoinController.getSuperJoin()
 GET     /google                     controllers.TableJoinController.getGoogleChart()
+GET     /column                     controllers.TableJoinController.getGoogleColumn()
 
 
 # Daemon
 GET     /daemonStart                controllers.DaemonController.start()
 
 #Looping
-GET     /looping                    controllers.LoopingController.checkDB()
+GET     /buttonPage                 controllers.LoopingController.buttonPage()
+POST    /buttonStart                controllers.LoopingController.checkDB()

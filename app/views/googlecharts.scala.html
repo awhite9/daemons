@@ -1,4 +1,4 @@
-@(patientVital: List[PatientVital])
+@(patientVital: List[PatientVital], vitalJoin: List[VitalJoin])
 <html>
 <head>
     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
@@ -8,13 +8,13 @@
 
       function drawChart() {
         var data = google.visualization.arrayToDataTable([
-          ['Date Taken', 'Weight in lb'],
-           @for(patientVital <- patientVital){
-          ['@patientVital.dateTaken', @patientVital.value],}
+          ['Date Taken', 'Weight in lb', 'Total Cholesterol'],
+           @for(vitalJoin <- vitalJoin){
+          ['@vitalJoin.dateTaken', @vitalJoin.val1, @vitalJoin.val2],}
         ]);
 
         var options = {
-          title: 'Weight Over Time',
+          title: 'Weight and Cholesterol Over Time',
           curveType: 'function',
           legend: { position: 'bottom' }
         };
