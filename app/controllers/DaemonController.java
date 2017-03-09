@@ -24,14 +24,14 @@ public class DaemonController extends Controller
         this.application = application;
 
     }
-
+    // this sets the time intervals that the run program run
     public Result start()
     {
         if (!Daemon.getRunning())
         {
             Daemon daemon = new Daemon();
             FiniteDuration delay = Duration.create(1, TimeUnit.SECONDS);
-            FiniteDuration repeat = Duration.create(1, TimeUnit.SECONDS);
+            FiniteDuration repeat = Duration.create(10, TimeUnit.SECONDS);
 
             Akka.system(application.get()).scheduler().
                     schedule(delay, repeat, daemon, Akka.system(application.get()).dispatcher());

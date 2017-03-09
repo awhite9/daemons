@@ -20,12 +20,13 @@ public class Daemon implements Runnable
             return running;
         }
 
+        //this function is called in the DaemonController
         @Override
         public void run()
         {
             try {
 
-
+                //making self call to the project to get around the transaction issues
                 URL url = new URL("http://localhost:9000/buttonStart");
 
                 //Get the request setup
@@ -34,7 +35,6 @@ public class Daemon implements Runnable
                 request.setRequestMethod("POST");
                 request.connect();
                 request.getResponseCode();
-                System.out.println("We got here!!");
 
             } catch (Exception e)
             {
