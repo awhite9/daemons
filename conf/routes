@@ -14,6 +14,12 @@ GET     /assets/*file               controllers.Assets.at(path="/public", file)
 GET     /superJoin                  controllers.TableJoinController.getSuperJoin()
 GET     /google                     controllers.TableJoinController.getGoogleChart()
 GET     /column                     controllers.TableJoinController.getGoogleColumn()
+GET     /reminderPage               controllers.TableJoinController.getReminderPage()
+POST    /deleteReminder             controllers.TableJoinController.deleteReminder(id:Long)
+GET     /newReminder                controllers.TableJoinController.newReminder()
+POST    /addReminder                controllers.TableJoinController.addReminder()
+GET     /editReminder/:id           controllers.TableJoinController.editReminder(id:Long)
+POST    /updateReminder             controllers.TableJoinController.updateReminder()
 
 
 # Daemon

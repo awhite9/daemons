@@ -1,0 +1,57 @@
+@(frequencyList: List[Frequency], patientList: List[Patient], prescriptionJoinList: List[PrescriptionJoin], currentReminder: SuperJoin)
+
+<!DOCTYPE html>
+<html lang=""en">
+<head>
+    <link rel="stylesheet" type ="text/css" href="@routes.Assets.at("stylesheets/actionPage.css")"/>
+    <meta charset=""UTF-8>
+    <title>Add New Reminder</title>
+</head>
+<body>
+
+<form method="POST" action="@routes.TableJoinController.updateReminder()">
+    <input type="hidden" name="reminderID" value="@currentReminder.reminderID"/>
+    <fieldset>
+        <legend>Edit Reminder</legend>
+        <div>
+            Current Frequency: @currentReminder.frequency Minutes<br>
+            Select The Frequency:<br>
+            <select name ="frequencyID">
+                @for(frequency <- frequencyList) {
+                <option value=@frequency.frequencyID>@frequency.frequency Minutes</option>
+                }
+            </select>
+        </div>
+        <div>
+            Current Patient: @currentReminder.firstName <br>
+            Select Patient ID:
+            <br>
+            <select name="patientID">
+                @for(patient <- patientList){
+                <option value=@patient.patientID>@patient.firstName</option>
+                }
+            </select>
+        </div>
+        <div>
+            Current Prescription:<br> @currentReminder.name @currentReminder.dosage<br>
+            Select The Prescription:
+            <br>
+            <select name="prescriptionID">
+                @for(prescription <- prescriptionJoinList){
+                <option value=@prescription.prescriptionID>@prescription.name @prescription.dosage</option>
+                }
+            </select>
+        </div>
+
+        When you update the reminder you will get a text reminder to take your medication!
+        <br>
+        <br>
+
+
+        <button>Edit Reminder</button>
+    </fieldset>
+
+
+</form>
+</body>
+</html>

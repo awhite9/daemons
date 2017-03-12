@@ -1,0 +1,45 @@
+@(superJoin: List[SuperJoin])
+
+<html>
+<head>
+    <link rel="stylesheet" type ="text/css" href="@routes.Assets.at("stylesheets/main.css")"/>
+
+</head>
+<body>
+<h1>Reminder Manager</h1>
+
+<table>
+    <tr>
+        <th>Drug Name</th>
+        <th>Dosage</th>
+        <th>Dosage Frequency</th>
+        <th>SMS Number</th>
+        <th>Edit</th>
+        <th>Delete</th>
+    </tr>
+    @for(superJoin <- superJoin){
+    <tr>
+        <td>@superJoin.name</td>
+        <td>@superJoin.dosage</td>
+        <td>@superJoin.frequency Minuets</td>
+        <td>@superJoin.cellPhone</td>
+        <td>
+            <form method="GET" action="@routes.TableJoinController.editReminder(superJoin.reminderID)">
+                <button>Edit</button>
+            </form>
+        </td>
+        <td>
+        <form method="POST" action="@routes.TableJoinController.deleteReminder(superJoin.reminderID)">
+            <button>Delete</button>
+        </form>
+    </td>
+    </tr>
+    }
+</table>
+<br>
+<form method="GET" action="@routes.TableJoinController.newReminder()">
+    <button>Add New Reminder</button>
+</form>
+
+</body>
+</html>

@@ -15,10 +15,6 @@ public class SuperJoin {
     @Column(name = "PATIENT_ID")
     public Long patientID;
 
-    public String getFirstName()
-    {
-        return firstName;
-    }
 
     @Column(name = "FIRST_NAME")
     public String firstName;
@@ -26,10 +22,6 @@ public class SuperJoin {
     @Column(name = "CELL_PHONE")
     public String cellPhone;
 
-    public String getCellPhone()
-    {
-        return cellPhone;
-    }
 
     @Column(name = "NEXT_REMINDER")
     public LocalTime nextReminder;

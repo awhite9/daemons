@@ -1,0 +1,54 @@
+@(frequencyList: List[Frequency], patientList: List[Patient], prescriptionJoinList: List[PrescriptionJoin])
+
+<!DOCTYPE html>
+<html lang=""en">
+<head>
+    <link rel="stylesheet" type ="text/css" href="@routes.Assets.at("stylesheets/actionPage.css")"/>
+    <meta charset=""UTF-8>
+    <title>Add New Reminder</title>
+</head>
+<body>
+
+<form method="POST" action="@routes.TableJoinController.addReminder()">
+    <fieldset>
+        <legend>Add New Reminder</legend>
+        <div>
+            Select The Frequency:
+            <select name ="frequencyID">
+                @for(frequency <- frequencyList) {
+                <option value=@frequency.frequencyID>@frequency.frequency Minutes</option>
+                }
+            </select>
+        </div>
+        <div>
+            Select Patient ID:
+            <br>
+            <select name="patientID">
+                @for(patient <- patientList){
+                <option value=@patient.patientID>@patient.firstName</option>
+                }
+            </select>
+        </div>
+        <div>
+            Select The Prescription:
+            <br>
+            <select name="prescriptionID">
+                @for(prescription <- prescriptionJoinList){
+                <option value=@prescription.prescriptionID>@prescription.name @prescription.dosage</option>
+                }
+            </select>
+        </div>
+
+        As soon as you create the new reminder, you will get a text message to take you first dosage.
+        You will then get Texts art the frequency you specified!
+        <br>
+        <br>
+
+
+        <button>Add Reminder</button>
+    </fieldset>
+
+
+</form>
+</body>
+</html>
