@@ -1,4 +1,4 @@
-@(frequencyList: List[Frequency], patientList: List[Patient], prescriptionJoinList: List[PrescriptionJoin])
+@( patientList: List[Patient], prescriptionJoinList: List[PrescriptionJoin])
 
 <!DOCTYPE html>
 <html lang=""en">
@@ -13,14 +13,6 @@
     <fieldset>
         <legend>Add New Reminder</legend>
         <div>
-            Select The Frequency:
-            <select name ="frequencyID">
-                @for(frequency <- frequencyList) {
-                <option value=@frequency.frequencyID>@frequency.frequency Seconds</option>
-                }
-            </select>
-        </div>
-        <div>
             Select Patient ID:
             <br>
             <select name="patientID">
@@ -34,7 +26,7 @@
             <br>
             <select name="prescriptionID">
                 @for(prescription <- prescriptionJoinList){
-                <option value=@prescription.prescriptionID>@prescription.name @prescription.dosage</option>
+                <option value=@prescription.prescriptionID>@prescription.medicationName @prescription.dosage @prescription.frequency Seconds</option>
                 }
             </select>
         </div>

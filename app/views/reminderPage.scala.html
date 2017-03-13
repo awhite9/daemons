@@ -10,18 +10,14 @@
 
 <table>
     <tr>
-        <th>Drug Name</th>
-        <th>Dosage</th>
-        <th>Dosage Frequency</th>
+        <th>Prescription</th>
         <th>SMS Number</th>
         <th>Edit</th>
         <th>Delete</th>
     </tr>
     @for(superJoin <- superJoin){
     <tr>
-        <td>@superJoin.name</td>
-        <td>@superJoin.dosage</td>
-        <td>@superJoin.frequency Seconds</td>
+        <td>@superJoin.medicationName @superJoin.dosage Taken Every @superJoin.frequency Seconds</td>
         <td>@superJoin.cellPhone</td>
         <td>
             <form method="GET" action="@routes.TableJoinController.editReminder(superJoin.reminderID)">

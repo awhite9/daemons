@@ -15,12 +15,11 @@ public class PatientVital {
     @Column(name = "PATIENT_VITAL_ID")
     public Long patientVitalID;
 
-    @Column(name = "NAME")
-    public String name;
+    @Column(name = "VITAL_NAME")
+    public String vitalName;
 
     @Column(name = "VALUE")
     public String value;
-
 
     @Column(name = "DATE_TAKEN")
     public java.sql.Date dateTaken;

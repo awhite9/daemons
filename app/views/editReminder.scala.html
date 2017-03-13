@@ -1,4 +1,4 @@
-@(frequencyList: List[Frequency], patientList: List[Patient], prescriptionJoinList: List[PrescriptionJoin], currentReminder: SuperJoin)
+@(patientList: List[Patient], prescriptionJoinList: List[PrescriptionJoin], currentReminder: SuperJoin)
 
 <!DOCTYPE html>
 <html lang=""en">
@@ -14,16 +14,6 @@
     <fieldset>
         <legend>Edit Reminder</legend>
         <div>
-            Select The Frequency:<br>
-            <select name ="frequencyID">
-                <option selected value="@currentReminder.frequencyID">@currentReminder.frequency Seconds</option>
-                @for(frequency <- frequencyList){
-                @if(!currentReminder.frequencyID.equals(frequency.frequencyID)){
-                <option value=@frequency.frequencyID>@frequency.frequency Seconds</option>
-                }}
-            </select>
-        </div>
-        <div>
             Select Patient ID:
             <br>
             <select name="patientID">
@@ -38,10 +28,10 @@
             Select The Prescription:
             <br>
             <select name="prescriptionID">
-                <option selected value="@currentReminder.prescriptionID">@currentReminder.name @currentReminder.dosage</option>
+                <option selected value="@currentReminder.prescriptionID">@currentReminder.medicationName @currentReminder.dosage @currentReminder.frequency Seconds</option>
                 @for(prescription <- prescriptionJoinList){
                 @if(!currentReminder.prescriptionID.equals(prescription.prescriptionID)){
-                <option value=@prescription.prescriptionID>@prescription.name @prescription.dosage</option>
+                <option value=@prescription.prescriptionID>@prescription.medicationName @prescription.dosage @prescription.frequency Seconds</option>
                 }}
             </select>
         </div>

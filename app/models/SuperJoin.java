@@ -32,8 +32,8 @@ public class SuperJoin {
     @Column(name = "DOSAGE")
     public String dosage;
 
-    @Column(name = "NAME")
-    public String name;
+    @Column(name = "MEDICATION_NAME")
+    public String medicationName;
 
     @Column(name = "FREQUENCY_ID")
     public Long frequencyID;

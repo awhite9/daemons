@@ -12,9 +12,6 @@ public class Prescription_Reminder {
     @Column(name ="REMINDER_ID")
     public Long reminderID;
 
-    @Column(name = "FREQUENCY_ID")
-    public Long frequencyID;
-
     @Column(name = "PATIENT_ID")
     public Long patientID;
 

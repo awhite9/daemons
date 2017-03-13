@@ -14,6 +14,9 @@ public class PrescriptionJoin {
     @Column(name ="DOSAGE")
     public String dosage;
 
-    @Column(name = "NAME")
-    public String name;
+    @Column(name = "MEDICATION_NAME")
+    public String medicationName;
+
+    @Column(name = "FREQUENCY")
+    public Long frequency;
 }
