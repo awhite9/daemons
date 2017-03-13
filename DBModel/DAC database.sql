@@ -24,7 +24,7 @@ CREATE TABLE IF NOT EXISTS `allergies` (
   PRIMARY KEY (`ALLERGY_ID`)
 ) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=ascii;
 
--- Dumping data for table dac.allergies: ~10 rows (approximately)
+-- Dumping data for table dac.allergies: ~8 rows (approximately)
 /*!40000 ALTER TABLE `allergies` DISABLE KEYS */;
 REPLACE INTO `allergies` (`ALLERGY_ID`, `ALLERGY_NAME`, `ALLERGY_DESCRITION`) VALUES
 	(1, 'Penicillin', 'Antibiotic allergy'),
@@ -191,7 +191,7 @@ CREATE TABLE IF NOT EXISTS `medical_condition` (
   PRIMARY KEY (`MEDICAL_CONDITION_ID`)
 ) ENGINE=InnoDB AUTO_INCREMENT=31 DEFAULT CHARSET=ascii;
 
--- Dumping data for table dac.medical_condition: ~30 rows (approximately)
+-- Dumping data for table dac.medical_condition: ~27 rows (approximately)
 /*!40000 ALTER TABLE `medical_condition` DISABLE KEYS */;
 REPLACE INTO `medical_condition` (`MEDICAL_CONDITION_ID`, `MC_NAME`, `MC_DESCRIPTION`, `MC_URL`) VALUES
 	(1, 'Asthma', '&lt;p&gt;&lt;span class="qt0"&gt;Asthma&lt;/span&gt; is a chronic disease that affects your airways. Your airways are tubes that carry air in and out of your lungs. If you have &lt;span class="qt0"&gt;asthma&lt;/span&gt;, the inside walls of your airways become sore and swollen. That makes them very sensitive, and they may react strongly to things that you are allergic to or find irritating. When your airways react, they get narrower and your lungs get less air.&lt;/p&gt;&lt;p&gt;Symptoms of &lt;span class="qt0"&gt;asthma&lt;/span&gt; include&lt;/p&gt;&lt;ul&gt;&lt;li&gt;Wheezing&lt;/li&gt;&lt;li&gt;Coughing, especially early in the morning or at night&lt;/li&gt;&lt;li&gt;Chest tightness&lt;/li&gt;&lt;li&gt;Shortness of breath&lt;/li&gt;&lt;/ul&gt;&lt;p&gt;Not all people who have &lt;span class="qt0"&gt;asthma&lt;/span&gt; have these symptoms. Having these symptoms doesn\'t always mean that you have &lt;span class="qt0"&gt;asthma&lt;/span&gt;. Your doctor will diagnose &lt;span class="qt0"&gt;asthma&lt;/span&gt; based on lung function tests, your medical history, and a physical exam. You may also have allergy tests.&lt;/p&gt;&lt;p&gt;When your &lt;span class="qt0"&gt;asthma&lt;/span&gt; symptoms become worse than usual, it\'s called an &lt;span class="qt0"&gt;asthma&lt;/span&gt; attack. Severe &lt;span class="qt0"&gt;asthma&lt;/span&gt; attacks may require emergency care, and they can be fatal.&lt;/p&gt;&lt;p&gt;&lt;span class="qt0"&gt;Asthma&lt;/span&gt; is treated with two kinds of medicines: quick-relief medicines to stop &lt;span class="qt0"&gt;asthma&lt;/span&gt; symptoms and long-term control medicines to prevent symptoms. &lt;/p&gt;&lt;p&gt;NIH: National Heart, Lung, and Blood Institute&lt;/p&gt;', 'https://medlineplus.gov/asthma.html'),
@@ -316,7 +316,7 @@ CREATE TABLE IF NOT EXISTS `patient` (
   PRIMARY KEY (`PATIENT_ID`)
 ) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=ascii;
 
--- Dumping data for table dac.patient: ~11 rows (approximately)
+-- Dumping data for table dac.patient: ~9 rows (approximately)
 /*!40000 ALTER TABLE `patient` DISABLE KEYS */;
 REPLACE INTO `patient` (`PATIENT_ID`, `FIRST_NAME`, `LAST_NAME`, `DOB`, `GENDER`, `ADDRESS`, `CITY`, `STATE`, `CELL_PHONE`, `ZIP`, `EMAIL`) VALUES
 	(1, 'Jeanne', 'Gagnon', '1979-12-05', 'F', '8605 charles st', 'Conway', 'AR', '5019762427', '72032', 'jeanne.gagnon@example.com'),
@@ -364,7 +364,7 @@ CREATE TABLE IF NOT EXISTS `patient_vital` (
   CONSTRAINT `VITAL_ID` FOREIGN KEY (`VITAL_ID`) REFERENCES `vitals` (`VITAL_ID`)
 ) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=ascii;
 
--- Dumping data for table dac.patient_vital: ~16 rows (approximately)
+-- Dumping data for table dac.patient_vital: ~15 rows (approximately)
 /*!40000 ALTER TABLE `patient_vital` DISABLE KEYS */;
 REPLACE INTO `patient_vital` (`PATIENT_VITAL_ID`, `PATIENT_ID`, `VITAL_ID`, `VALUE`, `DATE_TAKEN`) VALUES
 	(1, 11, 1, '98.5', '2017-02-03'),
@@ -520,7 +520,7 @@ CREATE TABLE IF NOT EXISTS `vaccination_given` (
   CONSTRAINT `vaccinations_vaccination_given_fk` FOREIGN KEY (`VACCINE_ID`) REFERENCES `vaccination` (`VACCINE_ID`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=ascii;
 
--- Dumping data for table dac.vaccination_given: ~1 rows (approximately)
+-- Dumping data for table dac.vaccination_given: ~0 rows (approximately)
 /*!40000 ALTER TABLE `vaccination_given` DISABLE KEYS */;
 REPLACE INTO `vaccination_given` (`VACCINATION_GIVEN_ID`, `DATE`, `DOCUMENTATION`, `PATIENT_ID`, `VACCINE_ID`, `DOCTOR_ID`) VALUES
 	(1, '2010-06-16', NULL, 11, 4, 6);
@@ -529,8 +529,8 @@ REPLACE INTO `vaccination_given` (`VACCINATION_GIVEN_ID`, `DATE`, `DOCUMENTATION
 -- Dumping structure for table dac.vitals
 CREATE TABLE IF NOT EXISTS `vitals` (
   `VITAL_ID` int(11) NOT NULL AUTO_INCREMENT,
-  `VITAL_NAME` varchar(50) DEFAULT '0',
-  `VITAL_DESCRIPTION` varchar(50) DEFAULT '0',
+  `VITAL_NAME` varchar(50) NOT NULL,
+  `VITAL_DESCRIPTION` varchar(50) NOT NULL,
   PRIMARY KEY (`VITAL_ID`)
 ) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=ascii;
 
