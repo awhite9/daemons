@@ -35,5 +35,11 @@ public class SuperJoin {
     @Column(name = "NAME")
     public String name;
 
+    @Column(name = "FREQUENCY_ID")
+    public Long frequencyID;
+
+    @Column(name = "PRESCRIPTION_ID")
+    public Long prescriptionID;
+
 
 }

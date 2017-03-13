@@ -14,32 +14,35 @@
     <fieldset>
         <legend>Edit Reminder</legend>
         <div>
-            Current Frequency: @currentReminder.frequency Minutes<br>
             Select The Frequency:<br>
             <select name ="frequencyID">
-                @for(frequency <- frequencyList) {
-                <option value=@frequency.frequencyID>@frequency.frequency Minutes</option>
-                }
+                <option selected value="@currentReminder.frequencyID">@currentReminder.frequency Seconds</option>
+                @for(frequency <- frequencyList){
+                @if(!currentReminder.frequencyID.equals(frequency.frequencyID)){
+                <option value=@frequency.frequencyID>@frequency.frequency Seconds</option>
+                }}
             </select>
         </div>
         <div>
-            Current Patient: @currentReminder.firstName <br>
             Select Patient ID:
             <br>
             <select name="patientID">
+                <option selected value="@currentReminder.patientID">@currentReminder.firstName</option>
                 @for(patient <- patientList){
+                @if(!currentReminder.patientID.equals(patient.patientID)){
                 <option value=@patient.patientID>@patient.firstName</option>
-                }
+                }}
             </select>
         </div>
         <div>
-            Current Prescription:<br> @currentReminder.name @currentReminder.dosage<br>
             Select The Prescription:
             <br>
             <select name="prescriptionID">
+                <option selected value="@currentReminder.prescriptionID">@currentReminder.name @currentReminder.dosage</option>
                 @for(prescription <- prescriptionJoinList){
+                @if(!currentReminder.prescriptionID.equals(prescription.prescriptionID)){
                 <option value=@prescription.prescriptionID>@prescription.name @prescription.dosage</option>
-                }
+                }}
             </select>
         </div>
 
