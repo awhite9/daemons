@@ -1,0 +1,49 @@
+@(prescription: List[PrescriptionManager])
+
+<html>
+<head>
+    <link rel="stylesheet" type ="text/css" href="@routes.Assets.at("stylesheets/main.css")"/>
+
+</head>
+<body>
+<h1>Prescription Manager</h1>
+
+<table>
+    <tr>
+        <th>Drug Name</th>
+        <th>Dosage</th>
+        <th>Frequency</th>
+        <th>Date Prescribed</th>
+        <th>Doctor</th>
+        <th>Pharmacy</th>
+        <th>Edit</th>
+        <th>Delete</th>
+    </tr>
+    @for(prescription <- prescription){
+    <tr>
+        <td>@prescription.medicationName</td>
+        <td>@prescription.dosage</td>
+        <td>@prescription.frequency Seconds</td>
+        <td>@prescription.date</td>
+        <td>@prescription.docName</td>
+        <td>@prescription.pharmName</td>
+        <td>
+            <form method="GET" action="@routes.PrescriptionManagerController.editPrescription(prescription.prescriptionID)">
+                <button>Edit</button>
+            </form>
+        </td>
+        <td>
+            <form method="POST" action="@routes.PrescriptionManagerController.deletePrescription(prescription.prescriptionID)">
+                <button>Delete</button>
+            </form>
+        </td>
+    </tr>
+    }
+</table>
+<br>
+<form method="GET" action="@routes.PrescriptionManagerController.newPrescription()">
+    <button>Add New Reminder</button>
+</form>
+
+</body>
+</html>

@@ -28,3 +28,13 @@ GET     /daemonStart                controllers.DaemonController.start()
 #Looping
 GET     /buttonPage                 controllers.LoopingController.buttonPage()
 POST    /buttonStart                controllers.LoopingController.checkDB()
+
+#Prescription Manager
+GET     /prescriptionManager        controllers.PrescriptionManagerController.prescriptionManager()
+GET     /newPrescription            controllers.PrescriptionManagerController.newPrescription()
+POST    /addPrescription            controllers.PrescriptionManagerController.addPrescription()
+POST    /deletePrescription         controllers.PrescriptionManagerController.deletePrescription(id:Long)
+GET     /editPrescription/:id       controllers.PrescriptionManagerController.editPrescription(id:Long)
+POST    /updatePrescription         controllers.PrescriptionManagerController.updatePrescription()
+
+

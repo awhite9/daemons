@@ -1,0 +1,82 @@
+@(currentPrescription: PrescriptionManager, patientList: List[Patient], frequencyList: List[Frequency], medicationList: List[Medication], doctorList: List[Doctor], pharmacyList: List[Pharmacy])
+
+<!DOCTYPE html>
+<html lang=""en">
+<head>
+    <link rel="stylesheet" type ="text/css" href="@routes.Assets.at("stylesheets/actionPage.css")"/>
+    <meta charset=""UTF-8>
+    <title>Edit Prescription</title>
+</head>
+<body>
+
+<form method="POST" action="@routes.PrescriptionManagerController.updatePrescription()">
+    <input type="hidden" name="prescriptionID" value="@currentPrescription.prescriptionID"/>
+    <fieldset>
+        <legend>Edit Prescription</legend>
+        <div>
+            Select Patient:
+            <br>
+            <select name="patientID">
+                <option selected value="@currentPrescription.patientID">@currentPrescription.firstName</option>
+                @for(patient <- patientList){
+                @if(!currentPrescription.patientID.equals(patient.patientID)){
+                <option value=@patient.patientID>@patient.firstName</option>
+                }}
+            </select>
+        </div>
+        <div>
+            Select Medication:
+            <br>
+            <select name="medicationID">
+                <option selected value="@currentPrescription.medicationID">@currentPrescription.medicationName</option>
+                @for(medication <- medicationList){
+                @if(!currentPrescription.medicationID.equals(medication.medicationID)){
+                <option value=@medication.medicationID>@medication.medicationName</option>
+                }}
+            </select>
+        </div>
+        <div>
+            Enter Dosage:
+            <br>
+            <input type="text" name="dosage" value="@currentPrescription.dosage"/>
+        </div>
+        <div>
+            Select Frequency of Dosage:
+            <br>
+            <select name="frequencyID">
+                <option selected value="@currentPrescription.frequencyID">@currentPrescription.frequency Seconds</option>
+                @for(frequency <- frequencyList){
+                @if(!currentPrescription.frequencyID.equals(frequency.frequencyID)){
+                <option value=@frequency.frequencyID>@frequency.frequency Seconds</option>
+                }}
+            </select>
+        </div>
+        <div>
+            Select Doctor:
+            <br>
+            <select name="doctorID">
+                <option selected value="@currentPrescription.doctorID">@currentPrescription.docName</option>
+                @for(doctor <- doctorList){
+                @if(!currentPrescription.doctorID.equals(doctor.doctorID)){
+                <option value=@doctor.doctorID>@doctor.docName</option>
+                }}
+            </select>
+        </div>
+        <div>
+            Select Pharmacy:
+            <br>
+            <select name="pharmacyID">
+                <option selected value="@currentPrescription.pharmacyID">@currentPrescription.pharmName</option>
+                @for(pharmacy <- pharmacyList){
+                @if(!currentPrescription.pharmacyID.equals(pharmacy.pharmacyID)){
+                <option value=@pharmacy.pharmacyID>@pharmacy.pharmName</option>
+                }}
+            </select>
+        </div>
+        <br>
+
+        <button>Edit Medication</button>
+    </fieldset>
+</form>
+</body>
+</html>

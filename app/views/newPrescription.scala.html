@@ -1,0 +1,73 @@
+@( patientList: List[Patient], frequencyList: List[Frequency], medicationList: List[Medication], doctorList: List[Doctor], pharmacyList: List[Pharmacy])
+
+<!DOCTYPE html>
+<html lang=""en">
+<head>
+    <link rel="stylesheet" type ="text/css" href="@routes.Assets.at("stylesheets/actionPage.css")"/>
+    <meta charset=""UTF-8>
+    <title>Add New Prescription</title>
+</head>
+<body>
+
+<form method="POST" action="@routes.PrescriptionManagerController.addPrescription()">
+    <fieldset>
+        <legend>Add New Prescription</legend>
+        <div>
+            Select Patient:
+            <br>
+            <select name="patientID">
+                @for(patient <- patientList){
+                <option value=@patient.patientID>@patient.firstName</option>
+                }
+            </select>
+        </div>
+        <div>
+            Select Medication:
+            <br>
+            <select name="medicationID">
+                @for(medication <- medicationList){
+                <option value=@medication.medicationID>@medication.medicationName</option>
+                }
+            </select>
+        </div>
+        <div>
+            Enter Dosage:
+            <br>
+            <input type="text" name="dosage"/>
+        </div>
+        <div>
+            Select Frequency of Dosage:
+            <br>
+            <select name="frequencyID">
+                @for(frequency <- frequencyList){
+                <option value=@frequency.frequencyID>@frequency.frequency Seconds</option>
+                }
+            </select>
+        </div>
+        <div>
+            Select Doctor:
+            <br>
+            <select name="doctorID">
+                @for(doctor <- doctorList){
+                <option value=@doctor.doctorID>@doctor.docName</option>
+                }
+            </select>
+        </div>
+        <div>
+            Select Pharmacy:
+            <br>
+            <select name="pharmacyID">
+                @for(pharmacy <- pharmacyList){
+                <option value=@pharmacy.pharmacyID>@pharmacy.pharmName</option>
+                }
+            </select>
+        </div>
+        <br>
+
+        <button>Add Medication</button>
+    </fieldset>
+
+
+</form>
+</body>
+</html>
