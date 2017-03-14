@@ -11,10 +11,7 @@ import play.mvc.Controller;
 import play.mvc.Result;
 
 import javax.inject.Inject;
-import java.sql.Date;
 import java.time.LocalDate;
-import java.time.LocalTime;
-import java.util.Calendar;
 import java.util.List;
 
 public class PrescriptionManagerController extends Controller
@@ -64,9 +61,7 @@ public class PrescriptionManagerController extends Controller
         prescription.date = LocalDate.now();
         jpaApi.em().persist(prescription);
         return redirect(routes.PrescriptionManagerController.prescriptionManager());
-
     }
-
 
     @Transactional
     public Result deletePrescription(Long prescriptionID) {

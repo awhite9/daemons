@@ -80,7 +80,7 @@ CREATE TABLE IF NOT EXISTS `frequency` (
   PRIMARY KEY (`FREQUENCY_ID`)
 ) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=ascii;
 
--- Dumping data for table dac.frequency: ~3 rows (approximately)
+-- Dumping data for table dac.frequency: ~2 rows (approximately)
 /*!40000 ALTER TABLE `frequency` DISABLE KEYS */;
 REPLACE INTO `frequency` (`FREQUENCY_ID`, `FREQUENCY`) VALUES
 	(1, 60),
@@ -240,7 +240,7 @@ CREATE TABLE IF NOT EXISTS `medical_history` (
   CONSTRAINT `patient_current_medical_condition_fk` FOREIGN KEY (`PATIENT_ID`) REFERENCES `patient` (`PATIENT_ID`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=ascii;
 
--- Dumping data for table dac.medical_history: ~4 rows (approximately)
+-- Dumping data for table dac.medical_history: ~3 rows (approximately)
 /*!40000 ALTER TABLE `medical_history` DISABLE KEYS */;
 REPLACE INTO `medical_history` (`MEDICAL_HISTORY_ID`, `DATE_DIAGNOSED`, `PATIENT_ID`, `DATE_RESOLVED`, `MEDICAL_CONDITION_ID`) VALUES
 	(1, '2014-07-12', 11, NULL, 11),
@@ -306,7 +306,7 @@ CREATE TABLE IF NOT EXISTS `patient` (
   `FIRST_NAME` varchar(50) NOT NULL,
   `LAST_NAME` varchar(50) NOT NULL,
   `DOB` date NOT NULL,
-  `GENDER` varchar(1) NOT NULL,
+  `GENDER` varchar(50) NOT NULL,
   `ADDRESS` varchar(100) NOT NULL,
   `CITY` varchar(50) NOT NULL,
   `STATE` varchar(2) NOT NULL,
@@ -316,7 +316,7 @@ CREATE TABLE IF NOT EXISTS `patient` (
   PRIMARY KEY (`PATIENT_ID`)
 ) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=ascii;
 
--- Dumping data for table dac.patient: ~9 rows (approximately)
+-- Dumping data for table dac.patient: ~11 rows (approximately)
 /*!40000 ALTER TABLE `patient` DISABLE KEYS */;
 REPLACE INTO `patient` (`PATIENT_ID`, `FIRST_NAME`, `LAST_NAME`, `DOB`, `GENDER`, `ADDRESS`, `CITY`, `STATE`, `CELL_PHONE`, `ZIP`, `EMAIL`) VALUES
 	(1, 'Jeanne', 'Gagnon', '1979-12-05', 'F', '8605 charles st', 'Conway', 'AR', '5019762427', '72032', 'jeanne.gagnon@example.com'),
@@ -344,7 +344,7 @@ CREATE TABLE IF NOT EXISTS `patient_allergy` (
   CONSTRAINT `patient_patient_allergy_fk` FOREIGN KEY (`PATIENT_ID`) REFERENCES `patient` (`PATIENT_ID`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=ascii;
 
--- Dumping data for table dac.patient_allergy: ~1 rows (approximately)
+-- Dumping data for table dac.patient_allergy: ~0 rows (approximately)
 /*!40000 ALTER TABLE `patient_allergy` DISABLE KEYS */;
 REPLACE INTO `patient_allergy` (`PATIENT_ALLERGY_ID`, `PATIENT_ID`, `ALLERGY_ID`) VALUES
 	(1, 11, 8);
@@ -364,7 +364,7 @@ CREATE TABLE IF NOT EXISTS `patient_vital` (
   CONSTRAINT `VITAL_ID` FOREIGN KEY (`VITAL_ID`) REFERENCES `vitals` (`VITAL_ID`)
 ) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=ascii;
 
--- Dumping data for table dac.patient_vital: ~15 rows (approximately)
+-- Dumping data for table dac.patient_vital: ~14 rows (approximately)
 /*!40000 ALTER TABLE `patient_vital` DISABLE KEYS */;
 REPLACE INTO `patient_vital` (`PATIENT_VITAL_ID`, `PATIENT_ID`, `VITAL_ID`, `VALUE`, `DATE_TAKEN`) VALUES
 	(1, 11, 1, '98.5', '2017-02-03'),
@@ -438,8 +438,8 @@ CREATE TABLE IF NOT EXISTS `prescription` (
 /*!40000 ALTER TABLE `prescription` DISABLE KEYS */;
 REPLACE INTO `prescription` (`PRESCRIPTION_ID`, `DATE`, `DOSAGE`, `FREQUENCY_ID`, `MEDICATION_ID`, `PATIENT_ID`, `PHARMACY_ID`, `DOCTOR_ID`) VALUES
 	(1, '2017-01-15', '20mg', 1, 16, 11, 3, 6),
-	(2, '2016-12-09', '325mg', 4, 14, 11, 3, 6),
-	(3, '2017-03-03', '50mg', 4, 24, 11, 3, 6),
+	(2, '2016-12-09', '325mg', 4, 14, 11, 3, 7),
+	(3, '2017-03-03', '50mg', 4, 24, 11, 7, 6),
 	(4, '2016-05-07', '25mg', 5, 23, 11, 3, 6);
 /*!40000 ALTER TABLE `prescription` ENABLE KEYS */;
 
@@ -454,9 +454,9 @@ CREATE TABLE IF NOT EXISTS `prescription_reminder` (
   KEY `prescription_id_fk` (`PRESCRIPTION_ID`),
   CONSTRAINT `patient_id_fk` FOREIGN KEY (`PATIENT_ID`) REFERENCES `patient` (`PATIENT_ID`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `prescription_id_fk` FOREIGN KEY (`PRESCRIPTION_ID`) REFERENCES `prescription` (`PRESCRIPTION_ID`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=ascii;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=ascii;
 
--- Dumping data for table dac.prescription_reminder: ~3 rows (approximately)
+-- Dumping data for table dac.prescription_reminder: ~4 rows (approximately)
 /*!40000 ALTER TABLE `prescription_reminder` DISABLE KEYS */;
 REPLACE INTO `prescription_reminder` (`REMINDER_ID`, `PATIENT_ID`, `PRESCRIPTION_ID`, `NEXT_REMINDER`) VALUES
 	(2, 11, 1, '12:15:08'),
