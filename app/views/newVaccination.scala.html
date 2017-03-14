@@ -1,0 +1,48 @@
+@(vaccinationManager: List[VaccinationManager], vaccine: List[Vaccination], patientList: List[Patient], doctorList: List[Doctor])
+
+<!DOCTYPE html>
+<html lang=""en">
+<head>
+    <link rel="stylesheet" type ="text/css" href="@routes.Assets.at("stylesheets/actionPage.css")"/>
+    <meta charset=""UTF-8>
+    <title>Add New Vaccination</title>
+</head>
+<body>
+
+<form method="POST" action="@routes.VaccineManagerController.addVaccination()">
+    <fieldset>
+        <legend>Add New Vaccination</legend>
+        <div>
+            Select Patient:
+            <br>
+            <select name="patientID">
+                @for(patient <- patientList){
+                <option value=@patient.patientID>@patient.firstName</option>
+                }
+            </select>
+        </div>
+        <div>
+            Select Vaccination:
+            <br>
+            <select name="vaccineID">
+                @for(vaccine <- vaccine){
+                <option value=@vaccine.vaccineID>@vaccine.vaccineName</option>
+                }
+            </select>
+        </div>
+        <div>
+            Select Doctor:
+            <br>
+            <select name="doctorID">
+                @for(doctor <- doctorList){
+                <option value=@doctor.doctorID>@doctor.docName</option>
+                }
+            </select>
+        </div>
+        <button>Add Vaccination</button>
+    </fieldset>
+
+
+</form>
+</body>
+</html>

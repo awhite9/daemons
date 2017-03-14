@@ -37,4 +37,13 @@ POST    /deletePrescription         controllers.PrescriptionManagerController.de
 GET     /editPrescription/:id       controllers.PrescriptionManagerController.editPrescription(id:Long)
 POST    /updatePrescription         controllers.PrescriptionManagerController.updatePrescription()
 
+# Vaccination Manager
+GET     /vaccineManager             controllers.VaccineManagerController.vaccinationManager()
+GET     /newVaccination             controllers.VaccineManagerController.newVaccination()
+POST    /addVaccination             controllers.VaccineManagerController.addVaccination()
+POST    /deleteVaccination          controllers.VaccineManagerController.deleteVaccination(id:Long)
+GET     /editVaccination/:id        controllers.VaccineManagerController.editVaccination(id:Long)
+POST    /updateVaccination          controllers.VaccineManagerController.updateVaccination()
+
+
 

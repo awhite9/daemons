@@ -1,0 +1,45 @@
+@(vaccination: List[VaccinationManager])
+
+<html>
+<head>
+    <link rel="stylesheet" type ="text/css" href="@routes.Assets.at("stylesheets/main.css")"/>
+
+</head>
+<body>
+<h1>Vaccination Manager</h1>
+
+<table>
+    <tr>
+        <th>Vaccine Name</th>
+        <th>Date</th>
+        <th>Booster Required</th>
+        <th>Doctor</th>
+        <th>Edit</th>
+        <th>Delete</th>
+    </tr>
+    @for(vaccination <- vaccination){
+    <tr>
+        <td>@vaccination.vaccineName</td>
+        <td>@vaccination.date</td>
+        <td>@vaccination.boosterRequired</td>
+        <td>@vaccination.docName</td>
+        <td>
+            <form method="GET" action="@routes.VaccineManagerController.editVaccination(vaccination.vaccinationGivenID)">
+            <button>Edit</button>
+            </form>
+        </td>
+        <td>
+            <form method="POST" action="@routes.VaccineManagerController.deleteVaccination(vaccination.vaccinationGivenID)">
+                <button>Delete</button>
+            </form>
+        </td>
+    </tr>
+    }
+</table>
+<br>
+<form method="GET" action="@routes.VaccineManagerController.newVaccination()">
+    <button>Add New Vaccination</button>
+</form>
+
+</body>
+</html>

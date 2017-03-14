@@ -1,0 +1,55 @@
+@(currentVaccination: VaccinationManager, vaccination: List[Vaccination], patientList: List[Patient], doctorList: List[Doctor])
+
+<!DOCTYPE html>
+<html lang=""en">
+<head>
+    <link rel="stylesheet" type ="text/css" href="@routes.Assets.at("stylesheets/actionPage.css")"/>
+    <meta charset=""UTF-8>
+    <title>Edit Vaccination</title>
+</head>
+<body>
+
+<form method="POST" action="@routes.VaccineManagerController.updateVaccination()">
+    <input type="hidden" name="vaccinationGivenID" value="@currentVaccination.vaccinationGivenID"/>
+    <fieldset>
+        <legend>Edit Vaccination</legend>
+        <div>
+            Select Patient ID:
+            <br>
+            <select name="patientID">
+                <option selected value="@currentVaccination.patientID">@currentVaccination.firstName</option>
+                @for(patient <- patientList){
+                @if(!currentVaccination.patientID.equals(patient.patientID)){
+                <option value=@patient.patientID>@patient.firstName</option>
+                }}
+            </select>
+        </div>
+        <div>
+            Select Vaccination:
+            <br>
+            <select name="vaccineID">
+                <option selected value="@currentVaccination.vaccineID">@currentVaccination.vaccineName</option>
+                @for(vaccine <- vaccination){
+                @if(!currentVaccination.vaccineID.equals(vaccine.vaccineID)){
+                <option value=@vaccine.vaccineID>@vaccine.vaccineName</option>
+                }}
+            </select>
+        </div>
+        <div>
+            Select Doctor:
+            <br>
+            <select name="doctorID">
+                <option selected value="@currentVaccination.doctorID">@currentVaccination.docName</option>
+                @for(doctor <- doctorList){
+                @if(!currentVaccination.doctorID.equals(doctor.doctorID)){
+                <option value=@doctor.doctorID>@doctor.docName</option>
+                }}
+            </select>
+        </div>
+
+        <button>Edit Vaccination</button>
+    </fieldset>
+
+</form>
+</body>
+</html>

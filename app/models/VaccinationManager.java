@@ -5,7 +5,7 @@ import javax.persistence.*;
 import java.time.LocalDate;
 
 @Entity
-public class VaccinationGiven {
+public class VaccinationManager {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -15,9 +15,6 @@ public class VaccinationGiven {
     @Column(name = "DATE")
     public LocalDate date;
 
-    @Column(name = "DOCUMENTATION")
-    public String documentation;
-
     @Column(name = "PATIENT_ID")
     public Long patientID;
 
@@ -26,4 +23,16 @@ public class VaccinationGiven {
 
     @Column(name = "DOCTOR_ID")
     public Long doctorID;
+
+    @Column(name = "VACCINE_NAME")
+    public String vaccineName;
+
+    @Column(name = "DOC_NAME")
+    public String docName;
+
+    @Column(name = "FIRST_NAME")
+    public String firstName;
+
+    @Column(name = "BOOSTER_REQUIRED")
+    public String boosterRequired;
 }
