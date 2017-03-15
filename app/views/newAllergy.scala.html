@@ -1,0 +1,42 @@
+@(allergy: List[Allergies], patientList: List[Patient])
+
+<!DOCTYPE html>
+<html lang=""en">
+<head>
+    <link rel="stylesheet" type ="text/css" href="@routes.Assets.at("stylesheets/actionPage.css")"/>
+    <meta charset=""UTF-8>
+    <title>Add New Allergy</title>
+</head>
+<body>
+
+<form method="POST" action="@routes.AllergyManagerController.addAllergy()">
+    <fieldset>
+        <legend>Add New Allergy</legend>
+        <div>
+            Select Patient ID:
+            <br>
+            <select name="patientID">
+                @for(patient <- patientList){
+                <option value=@patient.patientID>@patient.firstName</option>
+                }
+            </select>
+        </div>
+        <div>
+            Select The Allergy:
+            <br>
+            <select name="allergyID">
+                @for(allergy <- allergy){
+                <option value=@allergy.allergyID>@allergy.allergyName</option>
+                }
+            </select>
+        </div>
+        <br>
+
+
+        <button>Add Allergy</button>
+    </fieldset>
+
+
+</form>
+</body>
+</html>

@@ -1,0 +1,33 @@
+@(date: List[VitalDate], vitalTable: List[VitalList], vitalJoin: List[VitalManagerJoin])
+
+<html>
+<head>
+    <link rel="stylesheet" type ="text/css" href="@routes.Assets.at("stylesheets/main.css")"/>
+
+</head>
+<body>
+<h1>Vital Manager</h1>
+
+<table>
+    <tr>
+        <th>Vital Name</th>
+        @for(date <- date){
+        <th>@date.dateTaken</th>
+        }
+    </tr>
+    @for(vital <- vitalTable){
+    <tr>
+        <td>@vital.getVitalName</td>
+        <td>@vital.getValue1</td>
+        <td>@vital.getValue2</td>
+        <td>@vital.getValue3</td>
+    </tr>
+    }
+</table>
+<br>
+<form>
+    <button>Add New Set of Vitals</button>
+</form>
+
+</body>
+</html>

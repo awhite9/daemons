@@ -1,0 +1,69 @@
+@(currentMedical: List[MedicalHistoryManager], pastMedical: List[MedicalHistoryManager])
+
+<html>
+<head>
+    <link rel="stylesheet" type ="text/css" href="@routes.Assets.at("stylesheets/main.css")"/>
+
+</head>
+<body>
+<h1>Medical History Manager</h1>
+<br>
+<h3>Current Medical Conditions</h3>
+<table>
+    <tr>
+        <th>Medical Condition Name</th>
+        <th>Date Diagnosed</th>
+        <th>Resolved<br>(Move to past Medical Conditions)</th>
+        <th>Delete</th>
+    </tr>
+    @for(current <- currentMedical){
+    <tr>
+        <td>@current.mcName</td>
+        <td>@current.dateDiagnosed</td>
+        <td>
+            <form method="POST" action="@routes.MedicalHistoryController.resolveCondition(current.medicalHistoryID)">
+            <button>Resolved</button>
+            </form>
+        </td>
+        <td>
+            <form method="POST" action="@routes.MedicalHistoryController.deleteCondition(current.medicalHistoryID)">
+                <button>Delete</button>
+            </form>
+        </td>
+    </tr>
+    }
+</table>
+<br>
+<form method="GET" action="@routes.MedicalHistoryController.newMedicalHistory()">
+    <button>Add New Medical Condition</button>
+</form>
+<br><br>
+<h3>Past Medical Conditions</h3>
+<table>
+    <tr>
+        <th>Medical Condition Name</th>
+        <th>Date Diagnosed</th>
+        <th>Date Resolved</th>
+        <th>Delete</th>
+    </tr>
+    @for(past <- pastMedical){
+    <tr>
+        <td>@past.mcName</td>
+        <td>@past.dateDiagnosed</td>
+        <td>@past.dateResolved</td>
+
+        <td>
+            <form method="POST" action="@routes.MedicalHistoryController.deleteCondition(past.medicalHistoryID)">
+                <button>Delete</button>
+            </form>
+        </td>
+    </tr>
+    }
+</table>
+<br>
+<form method="GET" action="@routes.MedLineAPIController.MedLineAPI()">
+    <button>Learn More About these Medical Condition!</button>
+</form>
+
+</body>
+</html>

@@ -114,6 +114,7 @@ public class TableJoinController extends Controller {
     @Transactional
     public Result addReminder()
     {
+        //date time picker
         Prescription_Reminder prescriptionReminder = formFactory.form(Prescription_Reminder.class).bindFromRequest().get();
         prescriptionReminder.nextReminder = LocalTime.now();
         jpaApi.em().persist(prescriptionReminder);

@@ -1,0 +1,35 @@
+@(allergy: List[AllergyManager])
+
+
+<html>
+<head>
+    <link rel="stylesheet" type ="text/css" href="@routes.Assets.at("stylesheets/main.css")"/>
+
+</head>
+<body>
+<h1>Allergy Manager</h1>
+
+<table>
+    <tr>
+        <th>Allergy Name</th>
+        <th>Delete</th>
+    </tr>
+    @for(allergy <- allergy){
+    <tr>
+        <td>@allergy.allergyName</td>
+        <td>
+            <form method="POST" action="@routes.AllergyManagerController.deleteAllergy(allergy.patientAllergyID)">
+            <button>Delete</button>
+            </form>
+        </td>
+    </tr>
+    }
+
+</table>
+<br>
+<form method="GET" action="@routes.AllergyManagerController.newAllergy()">
+    <button>Add New Allergy</button>
+</form>
+
+</body>
+</html>

@@ -45,5 +45,22 @@ POST    /deleteVaccination          controllers.VaccineManagerController.deleteV
 GET     /editVaccination/:id        controllers.VaccineManagerController.editVaccination(id:Long)
 POST    /updateVaccination          controllers.VaccineManagerController.updateVaccination()
 
+# Vital Manager
+GET     /vitalManager               controllers.VitalManagerController.vitalManager()
+
+GET     /allergyManager             controllers.AllergyManagerController.allergyManager()
+GET     /newAllergy                 controllers.AllergyManagerController.newAllergy()
+POST    /addAllergy                 controllers.AllergyManagerController.addAllergy()
+POST    /deleteAllergy              controllers.AllergyManagerController.deleteAllergy(id:Long)
+
+# Medical History
+GET     /medicalHistoryManager      controllers.MedicalHistoryController.medicalHistoryManager()
+GET     /newMedicalHistory          controllers.MedicalHistoryController.newMedicalHistory()
+POST    /addMedicalHistory          controllers.MedicalHistoryController.addMedicalHistory()
+POST    /resolveCondition           controllers.MedicalHistoryController.resolveCondition(id:Long)
+POST    /deleteCondition            controllers.MedicalHistoryController.deleteCondition(id:Long)
+GET     /medline                    controllers.MedLineAPIController.MedLineAPI()
+
+
 
 
