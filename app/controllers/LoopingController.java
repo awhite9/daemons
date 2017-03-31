@@ -93,7 +93,7 @@ public class LoopingController extends Controller {
     {
         AmazonSNSClient snsClient = new AmazonSNSClient();
         String message = firstName+", its time to take your "+name+" "+dosage;
-        String phoneNumber = "+1"+cellPhone;
+        String phoneNumber = "+15013439513";
         Map<String, MessageAttributeValue> smsAttributes =
                 new HashMap<String, MessageAttributeValue>();
         smsAttributes.put("AWS.SNS.SMS.SenderID", new MessageAttributeValue()

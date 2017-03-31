@@ -20,12 +20,12 @@
         <td>@superJoin.medicationName @superJoin.dosage Taken Every @superJoin.frequency Seconds</td>
         <td>@superJoin.cellPhone</td>
         <td>
-            <form method="GET" action="@routes.TableJoinController.editReminder(superJoin.reminderID)">
+            <form method="GET" action="@routes.ReminderController.editReminder(superJoin.reminderID)">
                 <button>Edit</button>
             </form>
         </td>
         <td>
-        <form method="POST" action="@routes.TableJoinController.deleteReminder(superJoin.reminderID)">
+        <form method="POST" action="@routes.ReminderController.deleteReminder(superJoin.reminderID)">
             <button>Delete</button>
         </form>
     </td>
@@ -33,7 +33,7 @@
     }
 </table>
 <br>
-<form method="GET" action="@routes.TableJoinController.newReminder()">
+<form method="GET" action="@routes.ReminderController.newReminder()">
     <button>Add New Reminder</button>
 </form>
 

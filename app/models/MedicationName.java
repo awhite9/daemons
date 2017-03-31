@@ -3,7 +3,7 @@ package models;
 import javax.persistence.*;
 
 @Entity
-public class Medication {
+public class MedicationName {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

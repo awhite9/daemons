@@ -5,7 +5,6 @@ import com.google.inject.Provider;
 import daemon.Daemon;
 import play.api.Application;
 import play.api.libs.concurrent.Akka;
-import play.db.jpa.JPAApi;
 import play.mvc.Controller;
 import play.mvc.Result;
 import scala.concurrent.duration.Duration;

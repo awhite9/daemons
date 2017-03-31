@@ -2,7 +2,9 @@ package controllers;
 
 
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import models.*;
+import play.Logger;
 import play.data.DynamicForm;
 import play.data.FormFactory;
 import play.db.jpa.JPAApi;
@@ -11,7 +13,10 @@ import play.mvc.Controller;
 import play.mvc.Result;
 
 import javax.inject.Inject;
+import java.net.HttpURLConnection;
+import java.net.URL;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 public class PrescriptionManagerController extends Controller
@@ -45,7 +50,7 @@ public class PrescriptionManagerController extends Controller
 
         List<Frequency> frequencyList = (List<Frequency>) jpaApi.em().createNativeQuery("select f.frequency_id, f.frequency from frequency f", Frequency.class).getResultList();
 
-        List<Medication> medicationList = (List<Medication>) jpaApi.em().createNativeQuery("select m.medication_id, m.medication_name from medication m", Medication.class).getResultList();
+        List<MedicationName> medicationList = (List<MedicationName>) jpaApi.em().createNativeQuery("select m.medication_id, m.medication_name from medication m", MedicationName.class).getResultList();
 
         List<Doctor> doctorList = (List<Doctor>) jpaApi.em().createNativeQuery("select d.doctor_id, d.doc_name from doctor d", Doctor.class).getResultList();
 
@@ -84,7 +89,7 @@ public class PrescriptionManagerController extends Controller
 
         List<Frequency> frequencyList = (List<Frequency>) jpaApi.em().createNativeQuery("select f.frequency_id, f.frequency from frequency f", Frequency.class).getResultList();
 
-        List<Medication> medicationList = (List<Medication>) jpaApi.em().createNativeQuery("select m.medication_id, m.medication_name from medication m", Medication.class).getResultList();
+        List<MedicationName> medicationList = (List<MedicationName>) jpaApi.em().createNativeQuery("select m.medication_id, m.medication_name from medication m", MedicationName.class).getResultList();
 
         List<Doctor> doctorList = (List<Doctor>) jpaApi.em().createNativeQuery("select d.doctor_id, d.doc_name from doctor d", Doctor.class).getResultList();
 
@@ -117,6 +122,8 @@ public class PrescriptionManagerController extends Controller
         jpaApi.em().persist(prescription);
         return redirect(routes.PrescriptionManagerController.prescriptionManager());
     }
+
+
 
 
 }

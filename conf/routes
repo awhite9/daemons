@@ -11,15 +11,15 @@ GET     /persons                    controllers.PersonController.getPersons
 GET     /assets/*file               controllers.Assets.at(path="/public", file)
 
 # SuperJoin
-GET     /superJoin                  controllers.TableJoinController.getSuperJoin()
-GET     /google                     controllers.TableJoinController.getGoogleChart()
-GET     /column                     controllers.TableJoinController.getGoogleColumn()
-GET     /reminderPage               controllers.TableJoinController.getReminderPage()
-POST    /deleteReminder             controllers.TableJoinController.deleteReminder(id:Long)
-GET     /newReminder                controllers.TableJoinController.newReminder()
-POST    /addReminder                controllers.TableJoinController.addReminder()
-GET     /editReminder/:id           controllers.TableJoinController.editReminder(id:Long)
-POST    /updateReminder             controllers.TableJoinController.updateReminder()
+GET     /superJoin                  controllers.ReminderController.getSuperJoin()
+GET     /google                     controllers.ReminderController.getGoogleChart()
+GET     /column                     controllers.ReminderController.getGoogleColumn()
+GET     /reminderPage               controllers.ReminderController.getReminderPage()
+POST    /deleteReminder             controllers.ReminderController.deleteReminder(id:Long)
+GET     /newReminder                controllers.ReminderController.newReminder()
+POST    /addReminder                controllers.ReminderController.addReminder()
+GET     /editReminder/:id           controllers.ReminderController.editReminder(id:Long)
+POST    /updateReminder             controllers.ReminderController.updateReminder()
 
 
 # Daemon
@@ -60,6 +60,10 @@ POST    /addMedicalHistory          controllers.MedicalHistoryController.addMedi
 POST    /resolveCondition           controllers.MedicalHistoryController.resolveCondition(id:Long)
 POST    /deleteCondition            controllers.MedicalHistoryController.deleteCondition(id:Long)
 GET     /medline                    controllers.MedLineAPIController.MedLineAPI()
+
+# Drug Interaction Testing
+GET     /interaction                controllers.InteractionController.interactions()
+
 
 
 

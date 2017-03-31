@@ -1,4 +1,4 @@
-@(vitalJoin: List[VitalJoin])
+@(vitalJoin: List[VitalJoin], barChart: List[BarChart])
 
 <html>
 <head>
@@ -10,12 +10,12 @@ google.charts.setOnLoadCallback(drawDualY);
 function drawDualY() {
       var data = new google.visualization.DataTable();
       data.addColumn('string', 'Date');
-      data.addColumn('string', 'Hemoglobin A1C');
-      data.addColumn('string', 'Glucose');
+      data.addColumn('number', 'Hemoglobin A1C');
+      data.addColumn('number', 'Glucose');
 
       data.addRows([
-        @for(vitalJoin <- vitalJoin){
-          ['@vitalJoin.dateTaken', '@vitalJoin.val1', '@vitalJoin.val2'],}
+        @for(bar <- barChart){
+          ['@bar.getDateTaken', @bar.getHemoglobin, @bar.getGlucose],}
       ]);
 
       var options = {

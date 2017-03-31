@@ -1,0 +1,31 @@
+@(interaction: List[Interaction])
+
+<html>
+<head>
+    <link rel="stylesheet" type ="text/css" href="@routes.Assets.at("stylesheets/main.css")"/>
+
+</head>
+<body>
+<h1>Drug Interactions</h1>
+
+<table>
+    <tr>
+        <th>Drug1</th>
+        <th>Drug2</th>
+        <th>Description</th>
+
+    </tr>
+    @for(interaction <- interaction){
+    <tr>
+        <td>@interaction.drug1Name</td>
+        <td>@interaction.drug2Name</td>
+        <td>@interaction.interDescription</td>
+
+    </tr>
+    }
+</table>
+<br>
+
+
+</body>
+</html>
